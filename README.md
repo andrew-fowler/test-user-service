@@ -48,7 +48,7 @@ Locks the specified user account.  Returns 200 if successful, 404 if the user is
 
 Unlocks the specified user account.  Returns 200 if successful, 404 if the user is not found.
 
-### /ping
+### GET /ping
 
 Returns 200 if the service is active.
 
