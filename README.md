@@ -2,7 +2,7 @@
 
 This is a very basic service designed for supporting test automation frameworks for products that rely on user accounts that cannot be safely used concurrently.
 
-NOTE: For simplicity's sake, it assumes test account password are pre-known or inferrable from the user email.
+NOTE: For simplicity's sake, it assumes the test account passwords are pre-known or inferable from the user email.
 
 # Framework integration
 
