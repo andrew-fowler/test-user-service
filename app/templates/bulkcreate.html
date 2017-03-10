@@ -1,14 +1,23 @@
 {% extends "base.html" %}
 {% block content %}
 
+  <p>
+      Create a number of test users quickly.
+  </p>
+  <p>
+     Emails will be constructed in the form '&lt;<i>prefix</i>&gt;[Incrementing number]@&lt;<i>domain</i>&gt;'
+  </p>
+    <p>
+      E.g. '<i>test0@test.com</i>'
+  </p>
   <form action="" method="post" name="bulkcreate">
       {{ form.hidden_tag() }}
       <p>
-          Please enter the prefix:<br>
+          Prefix:<br>
           {{ form.prefix(size=20) }}<br>
-          Please enter the domain:<br>
+          Domain:<br>
           {{ form.domain(size=20) }}<br>
-          Please enter the number of accounts to generate:<br>
+          The number of accounts to generate:<br>
           {{ form.count(size=3) }}<br>
       </p>
       <p><input type="submit" value="Create"></p>
