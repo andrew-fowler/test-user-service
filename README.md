@@ -4,16 +4,6 @@ This is a very basic service designed for supporting test automation frameworks 
 
 NOTE: For simplicity's sake, it assumes the test account passwords are pre-known or inferable from the user email.
 
-# Framework integration
-
-In your startup hook, call GET /user and it will return the first available user account record in the form
-
-`{"date_last_locked": "Fri, 10 Mar 2017 19:50:35 GMT", "email": "test0@google.com", "id": 1, "locked": true}`
-
-and lock it, preventing concurrent access.  Save this to state/context for use in the tests.
-
-To release the account, call DELETE /lock/_userID_ in your teardown hook.  If the framework is stopped during runtime and the teardown hook doesn't fire, you can release the lock through the UI.
-
 # Getting started
 
 Install Python 3
@@ -25,6 +15,16 @@ Activate the environment using `source ./myvenv/bin/activate`
 Install dependencies using `pip install -r requirements.txt`
 
 Run the service using `python run.py`
+
+# Framework integration
+
+In your startup hook, call GET /user and it will return the first available user account record in the form
+
+`{"date_last_locked": "Fri, 10 Mar 2017 19:50:35 GMT", "email": "test0@google.com", "id": 1, "locked": true}`
+
+and lock it, preventing concurrent access.  Save this to state/context for use in the tests.
+
+To release the account, call DELETE /lock/_userID_ in your teardown hook.  If the framework is stopped during runtime and the teardown hook doesn't fire, you can release the lock through the UI.
 
 # Client Endpoints
 
