@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block content %}
+
+  <form action="" method="post" name="bulkcreate">
+      {{ form.hidden_tag() }}
+      <p>
+          Please enter the prefix:<br>
+          {{ form.prefix(size=20) }}<br>
+          Please enter the domain:<br>
+          {{ form.domain(size=20) }}<br>
+          Please enter the number of accounts to generate:<br>
+          {{ form.count(size=3) }}<br>
+      </p>
+      <p><input type="submit" value="Create"></p>
+  </form>
+
+{% endblock %}

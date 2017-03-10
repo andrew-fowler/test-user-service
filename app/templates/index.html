@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+    <div>
+        <div class="page-header">
+            <h1>Test User Data Service <small>alpha</small></h1>
+        </div>
+          <table class="table table-hover">
+              <thead class="thead-default">
+                  <tr>
+                      <th>ID</th>
+                      <th>Email</th>
+                      <th>Locked</th>
+                      <th>Date Last Locked</th>
+                      <th>Actions</th>
+                  </tr>
+              </thead>
+              {% for user in users %}
+                  <tr>
+                      <td valign="middle">{{user.id}}</td>
+                      <td valign="middle">{{user.email}}</td>
+                      <td valign="middle">{{user.locked}}</td>
+                      <td valign="middle">{{user.date_last_locked.strftime("%Y-%m-%d %H:%M:%S")}}</td>
+                      <td>
+                          <table>
+                              <tr>
+                                  <td>
+                                      <form action="./unlock/{{ user.id }}" method="post">
+                                          {% if user.locked %}
+                                            <input class="btn btn-success" type="submit" value="Unlock"/>
+                                          {% else %}
+                                            <input class="btn btn-success" type="submit" value="Unlock" disabled/>
+                                          {% endif %}
+                                       </form>
+                                  </td>
+                                  <td>
+                                      <form action="./lock/{{ user.id }}" method="post">
+                                          {% if user.locked %}
+                                            <input class="btn btn-info" type="submit" value="Lock" disabled/>
+                                          {% else %}
+                                            <input class="btn btn-info" type="submit" value="Lock"/>
+                                          {% endif %}
+                                       </form>
+                                  </td>
+                                  <td>
+                                      <form action="./delete/{{ user.id }}" method="post">
+                                        <input class="btn btn-danger" type="submit" value="Delete"/>
+                                       </form>
+                                  </td>
+                              </tr>
+                          </table>
+                      </td>
+                  </tr>
+              {% endfor %}
+          </table>
+
+        <a href="./create">Create new test user</a><br>
+        <a href="./bulkcreate">Bulk create test users</a><br>
+    </div>
+
+{% endblock %}
+

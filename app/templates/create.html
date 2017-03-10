@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <div>
+        <form action="" method="post" name="create">
+          {{ form.hidden_tag() }}
+          <p>
+              Please enter the email for the test account:<br>
+              {{ form.email(size=80) }}<br>
+          </p>
+          <p><input type="submit" value="Create"></p>
+        </form>
+    </div>
+
+{% endblock %}
