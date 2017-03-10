@@ -17,17 +17,6 @@ def index():
                            users=users)
 
 
-# @app.route('/ui_user', methods=['GET'])
-# def ui_getuser():
-#     users = models.User.query.all()
-#     for user in users:
-#         if not user.locked:
-#             lock_user(user)
-#             return json.dumps(user.as_dict())
-#
-#     return STATUS_409
-
-
 @app.route('/ui_delete/<userID>', methods=['POST'])
 def ui_delete(userID):
     users = models.User.query.all()
