@@ -8,7 +8,7 @@ Install Python 3
 
 Create the virtualenv using `python3.6 -m venv myvenv`
 
-Active the environment using `source ./myvenv/bin/activate`
+Activate the environment using `source ./myvenv/bin/activate`
 
 Install dependencies using `pip install -r requirements.txt`
 
