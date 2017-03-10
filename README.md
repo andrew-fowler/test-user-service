@@ -14,39 +14,27 @@ Install dependencies using `pip install -r requirements.txt`
 
 Run the service using `python run.py`
 
-# Endpoints
+# Client Endpoints
 
-### /
+### GET /user
 
-Displays the overview dashboard.  From here you can see all of the currently available user accounts, and lock, unlock and delete them.
+Returns an available user record and locks it.  If no user is available, a 404 is returned.
 
-### /getuser
+### POST /user
 
-Returns a json representation of an available user account including email and id and flags the account as locked.
-If no accounts are currently available/unlocked, it will return [409 Conflict](https://www.w3.org/Protocols/rfc2616/rfc2616-sec10.html#sec10.4.10).
+Creates a new user.  Returns 200 if successful.
 
-### /delete/_userID_
+### DELETE /user/_userID_
 
-Removes a user account from the datastore.
-If the user is not found, a 404 is returned.
+Deletes the specified user account.  Returns 200 if successful, 404 if the user is not found.
 
-### /lock/_userID_
+### POST /lock/_userID_
 
-Flags an account as locked.
-If the user is not found, a 404 is returned.
+Locks the specified user account.  Returns 200 if successful, 404 if the user is not found.
 
-### /unlock/_userID_
+### DELETE /lock/_userID_
 
-Flags an account as unlocked.
-If the user is not found, a 404 is returned.
-
-### /create
-
-Displays a UI for creating a new test user.
-
-### /bulkcreate
-
-Displays a UI for bulk creating a number of test users.  Currently, the users are created using a _prefix_[incremental number]@_domain_ pattern.
+Unlocks the specified user account.  Returns 200 if successful, 404 if the user is not found.
 
 ### /ping
 

@@ -16,6 +16,7 @@ def ping():
 def user_post():
     create_user(request.form.email.data)
     return STATUS_200
+    # TODO: implement error handling
 
 
 @app.route('/user', methods=['GET'])
@@ -35,7 +36,7 @@ def user_delete(userID):
     for user in users:
         if user.id == int(userID):
             delete_user(user)
-            return redirect('/index')
+            return STATUS_200
 
     return STATUS_404
 
