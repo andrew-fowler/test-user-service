@@ -26,7 +26,7 @@
                           <table>
                               <tr>
                                   <td>
-                                      <form action="./unlock/{{ user.id }}" method="post">
+                                      <form action="./ui_unlock/{{ user.id }}" method="post">
                                           {% if user.locked %}
                                             <input class="btn btn-success" type="submit" value="Unlock"/>
                                           {% else %}
@@ -35,7 +35,7 @@
                                        </form>
                                   </td>
                                   <td>
-                                      <form action="./lock/{{ user.id }}" method="post">
+                                      <form action="./ui_lock/{{ user.id }}" method="post">
                                           {% if user.locked %}
                                             <input class="btn btn-info" type="submit" value="Lock" disabled/>
                                           {% else %}
@@ -44,7 +44,7 @@
                                        </form>
                                   </td>
                                   <td>
-                                      <form action="./delete/{{ user.id }}" method="post">
+                                      <form action="./ui_delete/{{ user.id }}" method="post">
                                         <input class="btn btn-danger" type="submit" value="Delete"/>
                                        </form>
                                   </td>
@@ -55,8 +55,8 @@
               {% endfor %}
           </table>
 
-        <a href="./create">Create new test user</a><br>
-        <a href="./bulkcreate">Bulk create test users</a><br>
+        <a href="./ui_create">Create new test user</a><br>
+        <a href="./ui_bulkcreate">Bulk create test users</a><br>
     </div>
 
 {% endblock %}

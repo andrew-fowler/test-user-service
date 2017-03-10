@@ -1,18 +1,11 @@
-import datetime
-
 from flask import flash
-from flask import json
 from flask import render_template
 from werkzeug.utils import redirect
 
-from app import app
-from app import models
-from app.actions import create_user, unlock_user, lock_user, delete_user
+from app import models, STATUS_404, app
+from app.actions import delete_user, lock_user, unlock_user, create_user
 from app.forms import EmailForm, BulkCreateForm
 
-STATUS_200 = json.dumps({'success': True}), 200, {'ContentType': 'application/json'}
-STATUS_404 = json.dumps({'success': False}), 404, {'ContentType': 'application/json'}
-STATUS_409 = json.dumps({'success': False}), 409, {'ContentType': 'application/json'}
 
 @app.route('/')
 @app.route('/index')
@@ -24,24 +17,19 @@ def index():
                            users=users)
 
 
-@app.route('/ping', methods=['GET'])
-def ping():
-    return STATUS_200
+# @app.route('/ui_user', methods=['GET'])
+# def ui_getuser():
+#     users = models.User.query.all()
+#     for user in users:
+#         if not user.locked:
+#             lock_user(user)
+#             return json.dumps(user.as_dict())
+#
+#     return STATUS_409
 
 
-@app.route('/getuser', methods=['GET'])
-def getuser():
-    users = models.User.query.all()
-    for user in users:
-        if not user.locked:
-            lock_user(user)
-            return json.dumps(user.as_dict())
-
-    return STATUS_409
-
-
-@app.route('/delete/<userID>', methods=['POST'])
-def delete(userID):
+@app.route('/ui_delete/<userID>', methods=['POST'])
+def ui_delete(userID):
     users = models.User.query.all()
     for user in users:
         if user.id == int(userID):
@@ -50,8 +38,8 @@ def delete(userID):
     return STATUS_404
 
 
-@app.route('/lock/<userID>', methods=['GET', 'POST'])
-def lock(userID):
+@app.route('/ui_lock/<userID>', methods=['GET', 'POST'])
+def ui_lock(userID):
     users = models.User.query.all()
     for user in users:
         if user.id == int(userID):
@@ -60,8 +48,8 @@ def lock(userID):
     return STATUS_404
 
 
-@app.route('/unlock/<userID>', methods=['GET', 'POST'])
-def unlock(userID):
+@app.route('/ui_unlock/<userID>', methods=['GET', 'POST'])
+def ui_unlock(userID):
     users = models.User.query.all()
     for user in users:
         if user.id == int(userID):
@@ -70,8 +58,8 @@ def unlock(userID):
     return STATUS_404
 
 
-@app.route('/create', methods=['GET', 'POST'])
-def create():
+@app.route('/ui_create', methods=['GET', 'POST'])
+def ui_create_user():
     form = EmailForm()
     if form.validate_on_submit():
         flash('New user requested with email "%s"' %
@@ -84,8 +72,8 @@ def create():
                            form=form)
 
 
-@app.route('/bulkcreate', methods=['GET', 'POST'])
-def bulkcreate():
+@app.route('/ui_bulkcreate', methods=['GET', 'POST'])
+def ui_bulk_create_user():
     form = BulkCreateForm()
     if form.validate_on_submit():
         flash('New users bulk created')
