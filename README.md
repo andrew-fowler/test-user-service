@@ -1,6 +1,18 @@
-# Summary
+# Test User Service
 
-This is a prototype service for handling test user state for automation.
+This is a very basic service designed for supporting test automation frameworks for products that rely on user accounts that cannot be safely used concurrently.
+
+NOTE: For simplicity's sake, it assumes test account password are pre-known or inferrable from the user email.
+
+# Framework integration
+
+In your startup hook, call GET /user and it will return the first available user account record in the form
+
+`{"date_last_locked": "Fri, 10 Mar 2017 19:50:35 GMT", "email": "test0@google.com", "id": 1, "locked": true}`
+
+and lock it, preventing concurrent access.  Save this to state/context for use in the tests.
+
+To release the account, call DELETE /lock/_userID_ in your teardown hook.  If the framework is stopped during runtime and the teardown hook doesn't fire, you can release the lock through the UI.
 
 # Getting started
 
