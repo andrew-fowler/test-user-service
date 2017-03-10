@@ -1,5 +1,3 @@
-# Test User Service
-
 ![alt text](http://i.imgur.com/Z5svcte.jpg "Service dashboard screenshot")
 
 This is a very basic service designed for supporting test automation frameworks for products that rely on user accounts that cannot be safely used concurrently.
